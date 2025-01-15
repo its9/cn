@@ -23,14 +23,14 @@ int main (int argc, char *argv[])
   NodeContainer nodes;
   nodes.Create (3);
 
-  // Setup point-to-point links for all nodes to connect to the server (node 0)
+
   PointToPointHelper pointToPoint;
   pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
   pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
 
   NetDeviceContainer devices1, devices2;
-  devices1 = pointToPoint.Install (nodes.Get(0), nodes.Get(1)); // Link between server and client 1
-  devices2 = pointToPoint.Install (nodes.Get(0), nodes.Get(2)); // Link between server and client 2
+  devices1 = pointToPoint.Install (nodes.Get(0), nodes.Get(1)); 
+  devices2 = pointToPoint.Install (nodes.Get(0), nodes.Get(2)); 
 
   InternetStackHelper stack;
   stack.Install (nodes);
@@ -66,13 +66,13 @@ int main (int argc, char *argv[])
   clientApps2.Start (Seconds (3.0));
   clientApps2.Stop (Seconds (10.0));
 
-  // Animation interface for visualization
+  
   AnimationInterface anim("second.xml");
-  anim.SetConstantPosition(nodes.Get(0), 100, 400); // Server
-  anim.SetConstantPosition(nodes.Get(1), 400, 300); // Client 1
-  anim.SetConstantPosition(nodes.Get(2), 400, 500); // Client 2
+  anim.SetConstantPosition(nodes.Get(0), 100, 400); 
+  anim.SetConstantPosition(nodes.Get(1), 400, 300); 
+  anim.SetConstantPosition(nodes.Get(2), 400, 500); 
 
-  // Optional: ASCII trace for packet metrics
+ 
   AsciiTraceHelper ascii;
   pointToPoint.EnableAsciiAll(ascii.CreateFileStream("trace.tr"));
 
