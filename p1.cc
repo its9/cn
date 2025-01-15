@@ -3,14 +3,7 @@
 #include "ns3/internet-module.h"
 #include "ns3/point-to-point-module.h"
 #include "ns3/applications-module.h"
-#include "ns3/animation-interface.h"  // Include for NetAnim XML output
-
-// Default Network Topology
-//
-//       10.1.1.0
-// n0 -------------- n1
-//    point-to-point
-//
+#include "ns3/animation-interface.h"  
 
 using namespace ns3;
 
@@ -61,10 +54,9 @@ int main (int argc, char *argv[])
   // Create an AnimationInterface object to generate the XML file for NetAnim
   AnimationInterface anim ("netanim_output.xml");
 
-  // Optional: set additional attributes for NetAnim (like node colors, positions, etc.)
-  anim.SetMaxPktsPerTraceFile (10000); // Set maximum packets per trace file if necessary
-  anim.EnablePacketMetadata ();        // Enable packet metadata for better visualization
-
+ 
+  anim.SetMaxPktsPerTraceFile (10000);
+  anim.EnablePacketMetadata ();        /
   Simulator::Run ();
   Simulator::Destroy ();
   return 0;
